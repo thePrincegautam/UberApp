@@ -5,12 +5,10 @@ import com.rideshare.location_service.dto.NearByDriverResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.geo.*;
-import org.springframework.data.geo.Point;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +17,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LocationService {
 
-    private final RedisTemplate<String, String> redisTemplate;
     //Redis key for all driver locations
     private static final String DRIVERS_GEO_KEY = "drivers:locations";
+    private final RedisTemplate<String, String> redisTemplate;
 
     /**
      * update driver location in Redis.
@@ -88,8 +86,8 @@ public class LocationService {
      * remove driver when they go offline
      * maps to Redis ZERM command
      */
-    public void removeDriver(String driverId){
-        log.info("Removing driver: {}" , driverId);
+    public void removeDriver(String driverId) {
+        log.info("Removing driver: {}", driverId);
         redisTemplate.opsForGeo().remove(DRIVERS_GEO_KEY, driverId);
     }
 }

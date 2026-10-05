@@ -16,25 +16,28 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LocationController {
     private final LocationService locationService;
+
     // driver phone calls every this 3 seconds
     @PostMapping("/drivers/update")
     public ResponseEntity<String> updateDriverLocation(
-            @RequestBody DriverLocationRequest driverLocationRequest){
+            @RequestBody DriverLocationRequest driverLocationRequest) {
         locationService.updateDriverLocation(driverLocationRequest);
-        return ResponseEntity.ok( "Driver Location update");
+        return ResponseEntity.ok("Driver Location update");
     }
+
     //Matching service calls when ride is requested
     @GetMapping("/drivers/nearby")
     public ResponseEntity<List<NearByDriverResponse>> getNearByDrivers(
             @RequestParam double latitude,
             @RequestParam double longitude,
-            @RequestParam (defaultValue = "5.0") double radius){
-        return  ResponseEntity.ok(locationService.findNearbyDrivers(latitude, longitude, radius));
+            @RequestParam(defaultValue = "5.0") double radius) {
+        return ResponseEntity.ok(locationService.findNearbyDrivers(latitude, longitude, radius));
     }
+
     // called when driver goes offline
     @DeleteMapping("/drivers/driverID")
-    public ResponseEntity<String> removeDriver(@PathVariable String driverID){
+    public ResponseEntity<String> removeDriver(@PathVariable String driverID) {
         locationService.removeDriver(driverID);
-        return ResponseEntity.ok( "Driver removed successfully");
+        return ResponseEntity.ok("Driver removed successfully");
     }
 }

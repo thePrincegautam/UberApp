@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface RideRepository extends JpaRepository<Ride, String> {
 
-    List<Ride> FindByRiderIdOrderByCreatedAtDesc( String riderId);
+    List<Ride> findByRiderIdOrderByCreatedAtDesc(String riderId);
 }

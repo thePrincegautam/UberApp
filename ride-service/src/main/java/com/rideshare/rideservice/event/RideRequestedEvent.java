@@ -19,10 +19,10 @@ public class RideRequestedEvent {
     //PICKUP
     private double pickupLatitude;
     private double pickupLongitude;
-    private  String pickupAddress;
+    private String pickupAddress;
 
     // DROP
     private double dropLatitude;
-    private  double dropLongitude;
+    private double dropLongitude;
     private String dropAddress;
 }

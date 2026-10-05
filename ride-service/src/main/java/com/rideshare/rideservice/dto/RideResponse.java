@@ -14,26 +14,26 @@ import java.time.LocalDateTime;
 
 public class RideResponse {
 
-        private String id;
-        private String riderId;
-        private String driverId;
-        private double pickupLatitude;
-        private double pickupLongitude;
-        private  String pickupAddress;
-        private double dropLatitude;
-        private  double dropLongitude;
-        private String dropAddress;
-        // ride status
-        private RideStatus status;
+    private String id;
+    private String riderId;
+    private String driverId;
+    private double pickupLatitude;
+    private double pickupLongitude;
+    private String pickupAddress;
+    private double dropLatitude;
+    private double dropLongitude;
+    private String dropAddress;
+    // ride status
+    private RideStatus status;
 
-        private  double estimatedFare;
-        private double actualFare;
+    private double estimatedFare;
+    private double actualFare;
 
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
-        private LocalDateTime startedAt;
+    private LocalDateTime startedAt;
 
-        private  LocalDateTime completedAt;
+    private LocalDateTime completedAt;
 
-    }
+}

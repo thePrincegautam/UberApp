@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.PublicKey;
 import java.util.List;
 
 @RestController
@@ -24,38 +23,41 @@ public class RideController {
     //when rider request a new ride
     @PostMapping("/request")
     public ResponseEntity<RideResponse> requestRide(
-            @Valid @RequestBody RideRequest rideRequest){
+            @Valid @RequestBody RideRequest rideRequest) {
         log.info("Ride request received from rider:{}", rideRequest.getRiderId());
-        return  ResponseEntity.status(HttpStatus.CREATED)
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(rideService.requestRide(rideRequest));
     }
+
     @GetMapping("/{riderId}")
     public ResponseEntity<RideResponse> getRideById(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.getRideById(rideId));
     }
 
     @GetMapping("/rider/{riderId}")
     public ResponseEntity<List<RideResponse>> getRidesByRider(
-            @PathVariable String riderId){
-        return  ResponseEntity.ok(rideService.getRidesByRider(riderId));
+            @PathVariable String riderId) {
+        return ResponseEntity.ok(rideService.getRidesByRider(riderId));
     }
 
     // Driver starts the Ride
     @PutMapping("/{rideId}/start")
-    public  ResponseEntity<RideResponse> startRide(
-            @PathVariable String rideId){
-        return  ResponseEntity.ok(rideService.startRide(rideId));
+    public ResponseEntity<RideResponse> startRide(
+            @PathVariable String rideId) {
+        return ResponseEntity.ok(rideService.startRide(rideId));
     }
+
     @PutMapping("/{rideId}/complete")
     public ResponseEntity<RideResponse> completeRide(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.completeRide(rideId));
 
     }
+
     @PutMapping("/{rideId}/cancel")
     public ResponseEntity<RideResponse> cancelRide(
-            @PathVariable String rideId){
+            @PathVariable String rideId) {
         return ResponseEntity.ok(rideService.cancelRide(rideId));
 
     }
