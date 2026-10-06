@@ -31,8 +31,8 @@ public class RideController {
 
     @GetMapping("/{riderId}")
     public ResponseEntity<RideResponse> getRideById(
-            @PathVariable String rideId) {
-        return ResponseEntity.ok(rideService.getRideById(rideId));
+            @PathVariable String riderId) {
+        return ResponseEntity.ok(rideService.getRideById(riderId));
     }
 
     @GetMapping("/rider/{riderId}")
