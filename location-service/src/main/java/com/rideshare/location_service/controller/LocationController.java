@@ -22,7 +22,7 @@ public class LocationController {
     public ResponseEntity<String> updateDriverLocation(
             @RequestBody DriverLocationRequest driverLocationRequest) {
         locationService.updateDriverLocation(driverLocationRequest);
-        return ResponseEntity.ok("Driver Location update");
+        return ResponseEntity.ok("Driver Location updated");
     }
 
     //Matching service calls when ride is requested
