@@ -22,7 +22,7 @@ public class RideService {
 
     private static final String RIDE_REQUESTED_TOPIC = "ride.requested";
     private final RideRepository rideRepository;
-    private final KafkaTemplate<String, RideRequestedEvent> KafKaTemplate;
+    private final KafkaTemplate<String, RideRequestedEvent> kafKaTemplate;
 
     /**
      * create ride in DB with REQUESTED STATUS
@@ -32,11 +32,11 @@ public class RideService {
         //step1: save ride to database
         Ride ride = new Ride();
         ride.setRiderId(request.getRiderId());
-        ride.setPickupLatitude(request.getPickUpLatitude());
+        ride.setPickupLatitude(request.getPickupLatitude());
         ride.setPickupLongitude(request.getPickupLongitude());
         ride.setPickupAddress(request.getPickupAddress());
         ride.setDropLatitude(request.getDropLatitude());
-        ride.setDropLongitude(request.getPickupLongitude());
+        ride.setDropLongitude(request.getDropLongitude());
         ride.setDropAddress(request.getDropAddress());
         ride.setStatus(RideStatus.REQESTED);
         ride.setEstimatedFare(calculateEstimateFare(request));
@@ -56,7 +56,7 @@ public class RideService {
                 savedRide.getDropAddress()
         );
 
-        KafKaTemplate.send(RIDE_REQUESTED_TOPIC, savedRide.getId(), event);
+        kafKaTemplate.send(RIDE_REQUESTED_TOPIC, savedRide.getId(), event);
         log.info("RideRequestedEvent published to Kafka for ride: {}", savedRide.getId());
         //Update status to matching
         savedRide.setStatus(RideStatus.MATCHING);
@@ -124,7 +124,7 @@ public class RideService {
 
     private double calculateEstimateFare(RideRequest request) {
         // Simplified Haversine distance calculation
-        double lat1 = Math.toRadians(request.getPickUpLatitude());
+        double lat1 = Math.toRadians(request.getPickupLatitude());
         double lat2 = Math.toRadians(request.getDropLatitude());
 
         double lon1 = Math.toRadians(request.getPickupLongitude());

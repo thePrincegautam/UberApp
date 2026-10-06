@@ -68,9 +68,6 @@ public class MatchingService {
      * Distance: 70%
      * Rating: 30%
      * Score = (1/ distance) * distanceWeight + rating * ratingWeight
-     *
-     * @param drivers
-     * @return
      */
 
     private Optional<NearByDriverResponse> findBestDriver(

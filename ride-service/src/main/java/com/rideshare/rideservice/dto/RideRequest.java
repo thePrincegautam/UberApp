@@ -14,7 +14,7 @@ public class RideRequest {
     private String riderId;
 
     @NotNull(message = "Pickup Latitude  is required")
-    private double pickUpLatitude;
+    private double pickupLatitude;
 
     @NotNull(message = "Pickup Longitude  is required")
     private double pickupLongitude;
